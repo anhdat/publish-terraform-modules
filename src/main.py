@@ -1,3 +1,4 @@
+import glob
 import os
 import sys
 import json
@@ -102,14 +103,8 @@ def package_module(module_name: str, module_dir: str) -> str:
 
 def validate(module_folder: str) -> bool:
     """Checks the module folder exists and it's a terraform module"""
-
-    if not os.path.exists(module_folder):
-        return False
-
-    if not os.path.isfile(os.path.join(module_folder, "main.tf")):
-        return False
-
-    return True
+    tf_files = glob.glob(f"{module_folder}/*.tf")
+    return os.path.exists(module_folder) and len(tf_files) > 0
 
 
 if __name__ == "__main__":
