@@ -8,6 +8,10 @@ inputs:
   modules_list:
     description: "List of modules paths to push to the registry, e.g. ['./module-1','./module-2']"
     required: true
+  modules_dir:
+    description: "Path of the modules directory."
+    required: false
+    default: ""
   provider:
     description: "Specifies the Terraform provider that this module is used for. May contain alphanumeric characters. Maximum length is 64 characters."
     required: true
@@ -38,6 +42,7 @@ runs:
   image: "./Dockerfile"
   args:
     - ${{ inputs.modules_list }}
+    - ${{ inputs.modules_dir }}
     - ${{ inputs.provider }}
     - ${{ inputs.namespace }}
     - ${{ inputs.registry-name }}
