@@ -18,6 +18,7 @@ class Config:
     namespace: str
     base_version: str
     token: str
+    modules_dir: str = ""
     registry_name: str = "private"
     recreate: bool = False
     autobump_version: bool = False

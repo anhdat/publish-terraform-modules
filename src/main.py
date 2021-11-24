@@ -19,7 +19,7 @@ def main(config: Config) -> str:
 
     for module_folder in config.modules_list:
 
-        module_folder = os.path.join(WORKDIR, module_folder)
+        module_folder = os.path.join(WORKDIR, config.modules_dir, module_folder)
 
         if not validate(module_folder):
             Log.warning(
@@ -113,18 +113,19 @@ def validate(module_folder: str) -> bool:
 
 
 if __name__ == "__main__":
-
     modules_list = sys.argv[1]
-    provider = sys.argv[2]
-    namespace = sys.argv[3]
-    registry_name = sys.argv[4]
-    token = sys.argv[5]
-    recreate = sys.argv[6]
-    base_version = sys.argv[7]
-    autobump_version = sys.argv[8]
+    modules_dir = sys.argv[2]
+    provider = sys.argv[3]
+    namespace = sys.argv[4]
+    registry_name = sys.argv[5]
+    token = sys.argv[6]
+    recreate = sys.argv[7]
+    base_version = sys.argv[8]
+    autobump_version = sys.argv[9]
 
     config = Config(
         modules_list=json.loads(modules_list),
+        modules_dir=modules_dir,
         provider=provider,
         namespace=namespace,
         base_version=base_version,
